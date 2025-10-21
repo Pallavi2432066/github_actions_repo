@@ -1,0 +1,40 @@
+name: CI Status Demo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-success:
+    runs-on: ubuntu-latest
+    name: Build Success
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Run Success Script
+        run: echo "Build succeeded!"
+
+  build-fail:
+    runs-on: ubuntu-latest
+    name: Build Fail
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Run Fail Script
+        run: exit 1
+
+  run-tests:
+    runs-on: ubuntu-latest
+    name: Run Tests
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
