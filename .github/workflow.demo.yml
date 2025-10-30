@@ -1,0 +1,42 @@
+# This is the name that will appear as the accordion title in your UI
+name: Demo CI Pipeline
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab on GitHub
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Step 1: Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Sets up a Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Step 3: A step that will randomly succeed or fail for demonstration purposes
+      - name: Run tests that might fail
+        run: |
+          echo "Running critical tests..."
+          if (( $RANDOM % 2 )); then
+            echo "✅ Tests Passed!"
+            exit 0
+          else
+            echo "❌ Tests Failed!"
+            exit 1
+          fi
