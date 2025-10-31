@@ -1,0 +1,6 @@
+# This is the name that will appear as the accordion title in your UI
+name: WebApp-CI
+
+# Controls when the workflow will run
+on:
+
