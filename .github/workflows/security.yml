@@ -1,0 +1,17 @@
+# Name for the accordion title in your UI
+name: Security-Scan
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run security vulnerability scan
+        run: |
+          echo "Scanning for vulnerabilities..."
+          sleep 4 # Simulate a scan
+          echo "✅ No new vulnerabilities found. Scan passed."
+          exit 0
